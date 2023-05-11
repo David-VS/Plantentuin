@@ -1,14 +1,16 @@
 package be.ehb.plantentuin.model.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
+@JsonIgnoreProperties("bestellingen")
 public class Leverancier {
 
     @Id
@@ -21,6 +23,8 @@ public class Leverancier {
     private String adres;
     @NotBlank
     private String woonplaats;
+    @OneToMany(mappedBy = "leverancier")
+    private List<Bestelling> bestellingen = new ArrayList<>();
 
     public Leverancier() {
     }
@@ -55,5 +59,13 @@ public class Leverancier {
 
     public void setWoonplaats(String woonplaats) {
         this.woonplaats = woonplaats;
+    }
+
+    public List<Bestelling> getBestellingen() {
+        return bestellingen;
+    }
+
+    public void setBestellingen(List<Bestelling> bestellingen) {
+        this.bestellingen = bestellingen;
     }
 }

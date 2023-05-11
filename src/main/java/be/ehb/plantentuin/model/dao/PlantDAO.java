@@ -9,4 +9,5 @@ public interface PlantDAO extends CrudRepository<Plant, Integer> {
 
     List<Plant> findPlantByKleur(String kleur);
     List<Plant> findPlantByPrijsIsBetween(double min, double max);
+
 }
