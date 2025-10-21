@@ -15,6 +15,15 @@ public class PlantAPIController {
 
     private PlantDAO mPlantDAO;
 
+    /*CREATE TABLE plant
+(
+    art_code    INT          NOT NULL,
+    plantennaam VARCHAR(255) NOT NULL,
+    soort       VARCHAR(255) NOT NULL,
+    kleur       VARCHAR(255) NULL,
+    prijs       DOUBLE       NOT NULL,
+    CONSTRAINT pk_plant PRIMARY KEY (art_code)
+);*/
     @Autowired
     public PlantAPIController(PlantDAO mPlantDAO) {
         this.mPlantDAO = mPlantDAO;
@@ -35,17 +44,6 @@ public class PlantAPIController {
                                                 @RequestParam double max){
         return mPlantDAO.findPlantByPrijsIsBetween(min, max);
     }
-
-/*CREATE TABLE plant
-(
-    art_code    INT          NOT NULL,
-    plantennaam VARCHAR(255) NOT NULL,
-    soort       VARCHAR(255) NOT NULL,
-    kleur       VARCHAR(255) NULL,
-    prijs       DOUBLE       NOT NULL,
-    CONSTRAINT pk_plant PRIMARY KEY (art_code)
-);*/
-
     @PostMapping
     public HttpStatus insertPlant(@RequestParam String plantennaam,
                                   @RequestParam String soort,
